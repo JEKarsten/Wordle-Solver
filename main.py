@@ -1,69 +1,12 @@
 # import enchant
 import string
-
-class command_line_colors:
-    reset='\033[0m'
-    bold='\033[01m'
-    disable='\033[02m'
-    underline='\033[04m'
-    reverse='\033[07m'
-    strikethrough='\033[09m'
-    invisible='\033[08m'
-    class text:
-        black='\033[30m'
-        red='\033[31m'
-        green='\033[32m'
-        orange='\033[33m'
-        blue='\033[34m'
-        purple='\033[35m'
-        cyan='\033[36m'
-        lightgrey='\033[37m'
-        darkgrey='\033[90m'
-        lightred='\033[91m'
-        lightgreen='\033[92m'
-        yellow='\033[93m'
-        lightblue='\033[94m'
-        pink='\033[95m'
-        lightcyan='\033[96m'
-    class bg:
-        black='\033[40m'
-        red='\033[41m'
-        green='\033[42m'
-        orange='\033[43m'
-        blue='\033[44m'
-        purple='\033[45m'
-        cyan='\033[46m'
-        lightgrey='\033[47m'
+from formatting import command_line_colors
 
 WORD_LENGTH = 5
+FIVE_WORD_DICT = "five_letter_words.txt"
 
-def old():
-    # d = enchant.Dict("en_US")
-
-    possible_words = []
-
-    available_letters = "qyuiodfklzxcvbn"
-
-    letter_1 = available_letters
-    letter_2 = "o"
-    letter_3 = "u"
-    letter_4 = "l"
-    letter_5 = available_letters
-
-    for c1 in letter_1:
-        for c2 in letter_2:
-            for c3 in letter_3:
-                for c4 in letter_4:
-                    for c5 in letter_5:
-                        word = c1 + c2 + c3 + c4 + c5
-                        print(word)
-                        if d.check(word):
-                            possible_words.append(word)
-
-    print(possible_words)
 
 def get_guess():
-
     # word
     valid_input = False
     word = ""
@@ -86,8 +29,6 @@ def get_guess():
             i += 1
             if i == WORD_LENGTH:
                 valid_input = True
-    
-    valid_input = False
 
     # score
     valid_input = False
@@ -115,18 +56,94 @@ def get_guess():
     return word, score
 
 
-def modify_alphabet(alphabet, word, score):
+def modify_alphabet(alphabet: list[str], must_have: dict[str, list[bool]], final_word, word: str, score: str) -> tuple[list[str], dict[str, int]]:
     for i in range(WORD_LENGTH):
-        match word[i]:
-            case "g": alphabet[i] = word[i]
+        letter = word[i]
+        if score[i] == "g": # green
+            # final_word[i] = letter
+            alphabet[i] = word[i]
+
+        elif score[i] == "y": # yellow
+            alphabet[i].replace(letter, "", 1)
+            for j in range(WORD_LENGTH):
+                if must_have[letter][j] == None:
+                    must_have[letter][j] = True
+            must_have[letter][i] = False
+
+        else: # black
+            for j in range(WORD_LENGTH):
+                alphabet[j] = alphabet[j].replace(letter, "", 1)
+    return alphabet, must_have
+
+
+def update_possible_words(possible_words: set[str], alphabet: list[str], must_have):
+    new_possible_words = set()
+    for word in possible_words:
+        valid = True
+        for i in range(WORD_LENGTH):
+            letter = word[i]
+            if letter not in alphabet[i]:
+                valid = False
+                break
+        if valid:
+            new_possible_words.add(word)
+    return new_possible_words
+
+
+def format_guess(word: str, score: str):
+    output = ""
+    for i in range(WORD_LENGTH):
+        if score[i] == "g":
+            output += command_line_colors.text.green + word[i]
+        elif score[i] == "y":
+            output += command_line_colors.text.yellow + word[i]
+        else:
+            output += command_line_colors.text.black + word[i]
+    output += command_line_colors.reset
+    return output
+
+
+def print_round(guesses, possible_words: set[str]):
+    num_dashes = 20
+    words_per_line = 15
+    print("\n"*5)
+    print("-"*num_dashes + "\n" + "Guesses" + "\n" + "-"*num_dashes)
+    for i in range(WORD_LENGTH):
+        print(f"{i+1} ||  {guesses[i]}")
+    print("\n")
+    print("-"*num_dashes + "\n" + "Possible Words" + "\n" + "-"*num_dashes)
+    possible_words_list = list(sorted(possible_words))
+    for i in range(0, len(possible_words), words_per_line):
+        print(*possible_words_list[i:i+words_per_line], sep=", ")
+    print("\n")
+
 
 def main():
-    num_guesses = 0
+    
     alphabet = [string.ascii_lowercase for _ in range(WORD_LENGTH)]
+    must_have = {letter: [None for _ in range(WORD_LENGTH)] for letter in string.ascii_lowercase}
 
+    final_word = [None for _ in range(WORD_LENGTH)]
+
+    guesses = ["" for _ in range(WORD_LENGTH)]
+
+    # get all possible 5-letter words
+    possible_words = set()
+    with open(FIVE_WORD_DICT, "r") as f:
+        all_words = f.read().split()
+        for w in all_words:
+            possible_words.add(w)
+
+    num_guesses = 0
     while (num_guesses < 6):
-        word, score = get_guess()
-        print(word)
+        # word, score = get_guess()
+        word, score = "rainy", "gybbb"
+        alphabet, must_have = modify_alphabet(alphabet, must_have, final_word, word, score)
+        possible_words = update_possible_words(possible_words, alphabet, must_have)
+
+        guesses[num_guesses] = format_guess(word,score)
+        print_round(guesses, possible_words)
+        break
         num_guesses += 1
 
 if __name__=="__main__":
