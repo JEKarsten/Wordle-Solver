@@ -10,11 +10,9 @@ bogus
 jurat
 jihad
 phyle
--hood
 felly
 podge
 store
-pyro-
 oylet
 retex
 fenks
@@ -66,7 +64,6 @@ llama
 among
 lance
 conge
-hydr-
 glint
 clove
 suite
@@ -111,7 +108,6 @@ braky
 junco
 cedar
 spied
-ante-
 stook
 class
 idiot
@@ -150,7 +146,6 @@ thing
 check
 agist
 navvy
-aden-
 torch
 alday
 torso
@@ -185,7 +180,6 @@ fraud
 emmet
 pygal
 stang
--ment
 foots
 arere
 eider
@@ -196,7 +190,6 @@ pirai
 moria
 gaure
 eloin
--mere
 tided
 selch
 shily
@@ -311,7 +304,6 @@ plane
 these
 corah
 usher
--poda
 sexed
 scale
 camis
@@ -493,7 +485,6 @@ zulus
 dowse
 fling
 quits
--ster
 catso
 cates
 evite
@@ -532,14 +523,12 @@ sepal
 throw
 oundy
 tidal
--ably
 soler
 zamia
 hendy
 crept
 arest
 hence
-hema-
 clave
 twist
 teste
@@ -695,7 +684,6 @@ cryal
 tenne
 redif
 hider
-octo-
 judge
 troad
 built
@@ -709,7 +697,6 @@ ovant
 scrod
 sasse
 spawn
--ance
 wowke
 peery
 laker
@@ -723,7 +710,6 @@ hullo
 stola
 derby
 thana
--ward
 nowch
 putty
 araba
@@ -765,7 +751,6 @@ usnic
 drest
 youth
 pirry
-ambi-
 fault
 inker
 adder
@@ -810,7 +795,6 @@ woofy
 linga
 humid
 anent
--head
 beaux
 quran
 puree
@@ -935,7 +919,6 @@ paled
 velum
 henna
 gansa
-peri-
 byard
 bulge
 quair
@@ -1055,7 +1038,6 @@ daira
 hough
 mucin
 vista
-podo-
 creak
 vital
 lusty
@@ -1104,7 +1086,6 @@ caeca
 felon
 stork
 ousel
-mult-
 cetic
 apiol
 appay
@@ -1126,7 +1107,6 @@ pouch
 outdo
 sicca
 payen
--logy
 crime
 unlay
 missa
@@ -1298,10 +1278,8 @@ paien
 botts
 wrong
 gable
--ency
 madly
 lagly
-fluo-
 zambo
 sebic
 saxon
@@ -1412,7 +1390,6 @@ dildo
 latex
 moril
 nagor
-hemi-
 baron
 bayou
 paean
@@ -1537,7 +1514,6 @@ jarvy
 silly
 plitt
 agasp
-thio-
 swore
 ceria
 grave
@@ -1567,7 +1543,6 @@ churl
 baggy
 swelt
 sekes
-deut-
 jugum
 gazel
 sheer
@@ -1622,8 +1597,6 @@ arbor
 atlas
 rakee
 rayah
-go-by
--lite
 eisel
 oxter
 veldt
@@ -1634,7 +1607,6 @@ saugh
 elayl
 rooty
 tokin
-zooe-
 glore
 cuddy
 dowst
@@ -1650,7 +1622,6 @@ draff
 tapet
 clart
 curdy
-a b c
 egger
 gaily
 amigo
@@ -1740,7 +1711,6 @@ engyn
 abuse
 jerky
 gassy
--able
 rapid
 tonga
 yufts
@@ -1806,7 +1776,6 @@ orcin
 kabob
 torse
 abaca
--ling
 obrok
 genys
 deads
@@ -2052,7 +2021,6 @@ shied
 feyne
 moric
 spike
-prae-
 xylan
 irous
 steak
@@ -2064,7 +2032,6 @@ kneed
 limbo
 orach
 beset
-ento-
 poulp
 minge
 moses
@@ -2084,7 +2051,6 @@ segge
 facia
 thine
 sothe
-ilio-
 vigil
 flora
 letts
@@ -2177,11 +2143,9 @@ cruel
 thong
 widow
 ullet
-auto-
 mount
 varus
 sited
-para-
 fluff
 shute
 rance
@@ -2273,7 +2237,6 @@ stead
 ayont
 dicky
 panym
-so-so
 cleek
 shorl
 nowed
@@ -2312,7 +2275,6 @@ jaunt
 lodge
 basin
 strix
-step-
 blenk
 goter
 tempo
@@ -2377,7 +2339,6 @@ blest
 lanch
 oliva
 galei
-pari-
 keels
 caada
 sedan
@@ -2414,13 +2375,11 @@ prise
 incle
 arson
 tamer
-endo-
 thymy
 ranch
 runty
 sheth
 felis
-idio-
 rocoa
 soaky
 malar
@@ -2560,7 +2519,6 @@ sheet
 lyrid
 miche
 corby
--uret
 scrub
 quaff
 stein
@@ -2587,7 +2545,6 @@ finis
 curse
 misgo
 whiff
--ence
 octic
 monad
 simia
@@ -2604,7 +2561,6 @@ plein
 stoat
 scobs
 ichor
-indo-
 flite
 ermit
 vocal
@@ -2625,7 +2581,6 @@ rhein
 dakir
 domed
 aesir
--ship
 pence
 grebe
 merge
@@ -2635,7 +2590,6 @@ cabob
 otary
 caulk
 exody
--gram
 daisy
 galop
 mexal
@@ -2649,7 +2603,6 @@ loppy
 cimex
 snort
 atilt
-arch-
 tarin
 ilkon
 genie
@@ -2720,7 +2673,6 @@ aztec
 speer
 algid
 perdu
--some
 faker
 kalki
 seize
@@ -2846,7 +2798,6 @@ soddy
 areed
 shyly
 godly
-homo-
 abele
 sorwe
 solen
@@ -2916,7 +2867,6 @@ abyme
 shunt
 doree
 houss
-i o u
 manul
 arsis
 pound
@@ -3035,7 +2985,6 @@ quern
 fifer
 rined
 paver
-micr-
 stank
 thigh
 kydde
@@ -3419,7 +3368,6 @@ meshy
 humpy
 stall
 regel
-octa-
 antae
 earst
 soppy
@@ -3453,7 +3401,6 @@ groat
 shilf
 vogue
 mangy
-a-sea
 split
 spelt
 shady
@@ -3473,7 +3420,6 @@ serac
 borax
 hight
 sizer
--ways
 doter
 stipe
 spine
@@ -3485,7 +3431,6 @@ ledge
 canal
 ergot
 align
-deca-
 wicke
 metic
 mitre
@@ -3545,7 +3490,6 @@ ideat
 shrap
 tithe
 aryan
-deka-
 blowy
 unset
 latah
@@ -3648,7 +3592,6 @@ kevin
 hello
 vapid
 wharf
-ideo-
 toter
 hunky
 etern
@@ -3712,7 +3655,6 @@ whilk
 lucid
 great
 durst
-holo-
 unnun
 mocha
 amend
@@ -3790,7 +3732,6 @@ lilac
 palla
 blush
 atter
-semi-
 bodle
 woald
 parse
@@ -3801,7 +3742,6 @@ tinet
 houve
 hydra
 lepal
-iodo-
 noose
 freer
 strew
@@ -3960,7 +3900,6 @@ troll
 flour
 gamut
 hatel
-hemo-
 shako
 flint
 taira
@@ -4057,7 +3996,6 @@ barad
 belam
 podgy
 perel
--lith
 gnarl
 firth
 eghen
@@ -4111,7 +4049,6 @@ dowle
 keesh
 glode
 slant
--ancy
 hurry
 wakif
 roint
@@ -4121,10 +4058,8 @@ zooen
 order
 clavy
 ileum
-pedi-
 clink
 ogive
-basi-
 groan
 coypu
 azure
@@ -4290,7 +4225,6 @@ bonus
 tasto
 mores
 nudge
-meso-
 sdain
 warty
 brome
@@ -4323,7 +4257,6 @@ onion
 macaw
 upper
 logge
-naso-
 wolde
 bandy
 picul
@@ -4384,7 +4317,6 @@ guild
 ysame
 anigh
 mufti
-ha-ha
 bilbo
 piano
 honor
@@ -4486,7 +4418,6 @@ banat
 volow
 shooi
 arnot
-kilo-
 ascii
 kiang
 toyer
@@ -4605,7 +4536,6 @@ tisic
 emove
 bouge
 apart
-male-
 bedew
 paddy
 noble
@@ -4681,7 +4611,6 @@ daman
 skirr
 cimia
 tikus
-mono-
 valid
 fonne
 clare
@@ -4903,7 +4832,6 @@ murky
 warre
 dicer
 spale
-meta-
 ruggy
 larva
 sware
@@ -5073,7 +5001,6 @@ yield
 footy
 props
 novum
-demi-
 drill
 witan
 glede
@@ -5084,7 +5011,6 @@ salse
 gaper
 romic
 gular
--arch
 somal
 aheap
 bowge
@@ -5132,7 +5058,6 @@ asset
 ivied
 coopt
 quean
--type
 ergat
 irian
 slype
@@ -5140,7 +5065,6 @@ alien
 bourd
 courb
 stean
-levo-
 bully
 niste
 cruet
@@ -5283,7 +5207,6 @@ franc
 carve
 eurus
 newly
--ible
 hades
 chink
 beray
@@ -5407,7 +5330,6 @@ lived
 abort
 chara
 mohur
-xylo-
 gesse
 comet
 octad
@@ -5454,7 +5376,6 @@ dormy
 jossa
 paste
 quegh
-aero-
 roper
 amyss
 stike
@@ -5510,7 +5431,6 @@ humin
 recto
 teens
 topaz
--less
 parle
 anoil
 spilt
@@ -5518,7 +5438,6 @@ lamel
 dwine
 splay
 labor
-omni-
 pecco
 imbed
 bavin
@@ -5551,12 +5470,10 @@ devon
 viled
 agrin
 lakke
-leuc-
 stade
 bilin
 liege
 riant
-hypo-
 unwit
 marry
 hoary
@@ -5612,7 +5529,6 @@ neeld
 osier
 sahib
 unhap
-to-do
 ogler
 jippo
 spick
@@ -5673,7 +5589,6 @@ hovel
 allah
 ergon
 urban
-poly-
 extol
 stond
 rural
@@ -5700,7 +5615,6 @@ broth
 speet
 suine
 usnea
-post-
 argue
 myops
 beton
@@ -5790,7 +5704,6 @@ force
 hazle
 spirt
 wends
--derm
 snare
 gaudy
 tenet
@@ -5813,7 +5726,6 @@ front
 sight
 dimmy
 liken
-ecto-
 pokal
 aband
 islam
@@ -5981,7 +5893,6 @@ forum
 unsew
 agush
 twire
--ness
 losel
 smite
 punto
@@ -6019,7 +5930,6 @@ flute
 agaty
 samaj
 toned
-equi-
 fosse
 ozone
 pukka
@@ -6322,7 +6232,6 @@ whoot
 orvet
 wootz
 briar
--itis
 blank
 lying
 swive
@@ -6341,10 +6250,8 @@ funge
 grame
 skelp
 burin
-pedo-
 ratch
 witen
-utro-
 gleen
 uprun
 petre
