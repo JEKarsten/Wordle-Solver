@@ -56,33 +56,43 @@ def get_guess():
     return word, score
 
 
-def modify_alphabet(alphabet: list[str], must_have: dict[str, list[bool]], final_word, word: str, score: str) -> tuple[list[str], dict[str, int]]:
+def modify_alphabet(alphabet: list[str], must_have: dict[str, list[bool, list[bool]]], word: str, score: str) -> tuple[list[str], dict[str, int]]:
     for i in range(WORD_LENGTH):
         letter = word[i]
         if score[i] == "g": # green
-            # final_word[i] = letter
             alphabet[i] = word[i]
 
         elif score[i] == "y": # yellow
-            alphabet[i].replace(letter, "", 1)
-            for j in range(WORD_LENGTH):
-                if must_have[letter][j] == None:
-                    must_have[letter][j] = True
-            must_have[letter][i] = False
+            alphabet[i] = alphabet[i].replace(letter, "", 1)
+            if not must_have[letter][0]:
+                must_have[letter][0] = True
+            must_have[letter][1][i] = False
 
         else: # black
             for j in range(WORD_LENGTH):
                 alphabet[j] = alphabet[j].replace(letter, "", 1)
+    print(must_have)
     return alphabet, must_have
 
 
 def update_possible_words(possible_words: set[str], alphabet: list[str], must_have):
+    print(alphabet)
     new_possible_words = set()
     for word in possible_words:
         valid = True
         for i in range(WORD_LENGTH):
             letter = word[i]
             if letter not in alphabet[i]:
+                valid = False
+                break
+        for letter in string.ascii_lowercase:
+            if must_have[letter][0]:
+                has_letter = False
+                for i in range(WORD_LENGTH):
+                    if must_have[letter][1][i] and word[i] == letter:
+                        has_letter = True
+                        break
+            if not has_letter:
                 valid = False
                 break
         if valid:
@@ -103,7 +113,7 @@ def format_guess(word: str, score: str):
     return output
 
 
-def print_round(guesses, possible_words: set[str]):
+def print_round(guesses, possible_words: set[str], won: bool):
     num_dashes = 20
     words_per_line = 15
     print("\n"*5)
@@ -111,20 +121,19 @@ def print_round(guesses, possible_words: set[str]):
     for i in range(WORD_LENGTH):
         print(f"{i+1} ||  {guesses[i]}")
     print("\n")
-    print("-"*num_dashes + "\n" + "Possible Words" + "\n" + "-"*num_dashes)
-    possible_words_list = list(sorted(possible_words))
-    for i in range(0, len(possible_words), words_per_line):
-        print(*possible_words_list[i:i+words_per_line], sep=", ")
-    print("\n")
+    if won:
+        print("Congrats!")
+    else:
+        print("-"*num_dashes + "\n" + "Possible Words" + "\n" + "-"*num_dashes)
+        possible_words_list = list(sorted(possible_words))
+        for i in range(0, len(possible_words), words_per_line):
+            print(*possible_words_list[i:i+words_per_line], sep=", ")
+        print("\n")
 
 
 def main():
-    
     alphabet = [string.ascii_lowercase for _ in range(WORD_LENGTH)]
-    must_have = {letter: [None for _ in range(WORD_LENGTH)] for letter in string.ascii_lowercase}
-
-    final_word = [None for _ in range(WORD_LENGTH)]
-
+    must_have = {letter: [False, [True for _ in range(WORD_LENGTH)]] for letter in string.ascii_lowercase}
     guesses = ["" for _ in range(WORD_LENGTH)]
 
     # get all possible 5-letter words
@@ -135,16 +144,18 @@ def main():
             possible_words.add(w)
 
     num_guesses = 0
+    won = False
     while (num_guesses < 6):
-        # word, score = get_guess()
-        word, score = "rainy", "gybbb"
-        alphabet, must_have = modify_alphabet(alphabet, must_have, final_word, word, score)
+        word, score = get_guess()
+        alphabet, must_have = modify_alphabet(alphabet, must_have, word, score)
         possible_words = update_possible_words(possible_words, alphabet, must_have)
-
         guesses[num_guesses] = format_guess(word,score)
-        print_round(guesses, possible_words)
-        break
+        if score == "ggggg":
+            won = True
+        print_round(guesses, possible_words, won)
         num_guesses += 1
+        if won:
+            break
 
 if __name__=="__main__":
     main()
