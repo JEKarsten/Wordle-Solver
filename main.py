@@ -1,8 +1,9 @@
-# import enchant
+import os
 import string
-from formatting import command_line_colors
+from formatting import command_line_formats
 
 WORD_LENGTH = 5
+NUM_ALLOWED_GUESSES = 6
 FIVE_WORD_DICT = "five_letter_words.txt"
 
 
@@ -17,7 +18,7 @@ def get_guess():
 
         # checks the length of the word
         if len(word) != WORD_LENGTH:
-            print("Oops! This word is not 5 letters long -- please try again!")
+            print(f"Oops! This word is not 5 letters long -- please try again!")
             continue
 
         # checks that every letter is in the alphabet
@@ -35,7 +36,6 @@ def get_guess():
     score = ""
     while not valid_input:
         # gets score from stdin and converts it to lowercase
-        print()
         score = input("Enter score: ").lower()
 
         # checks the length of the score
@@ -71,12 +71,10 @@ def modify_alphabet(alphabet: list[str], must_have: dict[str, list[bool, list[bo
         else: # black
             for j in range(WORD_LENGTH):
                 alphabet[j] = alphabet[j].replace(letter, "", 1)
-    print(must_have)
     return alphabet, must_have
 
 
 def update_possible_words(possible_words: set[str], alphabet: list[str], must_have):
-    print(alphabet)
     new_possible_words = set()
     for word in possible_words:
         valid = True
@@ -92,37 +90,37 @@ def update_possible_words(possible_words: set[str], alphabet: list[str], must_ha
                     if must_have[letter][1][i] and word[i] == letter:
                         has_letter = True
                         break
-            if not has_letter:
-                valid = False
-                break
+                if not has_letter:
+                    valid = False
+                    break
         if valid:
             new_possible_words.add(word)
     return new_possible_words
 
 
-def format_guess(word: str, score: str):
+def format_guess(word: str, score: str) -> str:
     output = ""
     for i in range(WORD_LENGTH):
         if score[i] == "g":
-            output += command_line_colors.text.green + word[i]
+            output += command_line_formats.text.green + word[i]
         elif score[i] == "y":
-            output += command_line_colors.text.yellow + word[i]
+            output += command_line_formats.text.yellow + word[i]
         else:
-            output += command_line_colors.text.black + word[i]
-    output += command_line_colors.reset
+            output += command_line_formats.text.black + word[i]
+    output += command_line_formats.reset
     return output
 
 
-def print_round(guesses, possible_words: set[str], won: bool):
+def print_round(guesses: list[str], possible_words: set[str], won: bool):
     num_dashes = 20
     words_per_line = 15
-    print("\n"*5)
+    print("\n")
     print("-"*num_dashes + "\n" + "Guesses" + "\n" + "-"*num_dashes)
-    for i in range(WORD_LENGTH):
+    for i in range(NUM_ALLOWED_GUESSES):
         print(f"{i+1} ||  {guesses[i]}")
     print("\n")
     if won:
-        print("Congrats!")
+        print("~ Congrats! ~\n\n")
     else:
         print("-"*num_dashes + "\n" + "Possible Words" + "\n" + "-"*num_dashes)
         possible_words_list = list(sorted(possible_words))
@@ -134,7 +132,7 @@ def print_round(guesses, possible_words: set[str], won: bool):
 def main():
     alphabet = [string.ascii_lowercase for _ in range(WORD_LENGTH)]
     must_have = {letter: [False, [True for _ in range(WORD_LENGTH)]] for letter in string.ascii_lowercase}
-    guesses = ["" for _ in range(WORD_LENGTH)]
+    guesses = ["" for _ in range(NUM_ALLOWED_GUESSES)]
 
     # get all possible 5-letter words
     possible_words = set()
@@ -143,13 +141,16 @@ def main():
         for w in all_words:
             possible_words.add(w)
 
+    print("\n"*50)
+
     num_guesses = 0
     won = False
-    while (num_guesses < 6):
+    while (num_guesses < NUM_ALLOWED_GUESSES):
+        print(command_line_formats.bold + f"ROUND {num_guesses+1}" + command_line_formats.reset)
         word, score = get_guess()
         alphabet, must_have = modify_alphabet(alphabet, must_have, word, score)
         possible_words = update_possible_words(possible_words, alphabet, must_have)
-        guesses[num_guesses] = format_guess(word,score)
+        guesses[num_guesses] = format_guess(word, score)
         if score == "ggggg":
             won = True
         print_round(guesses, possible_words, won)
@@ -157,5 +158,5 @@ def main():
         if won:
             break
 
-if __name__=="__main__":
+if __name__ == "__main__":
     main()

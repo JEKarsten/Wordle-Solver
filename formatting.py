@@ -1,4 +1,4 @@
-class command_line_colors:
+class command_line_formats:
     reset='\033[0m'
     bold='\033[01m'
     disable='\033[02m'
