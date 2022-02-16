@@ -1,35 +1,47 @@
 class command_line_formats:
-    reset = '\033[0m'
-    bold = '\033[01m'
-    disable = '\033[02m'
-    underline = '\033[04m'
-    reverse = '\033[07m'
-    strikethrough = '\033[09m'
-    invisible = '\033[08m'
 
-    class text:
-        black = '\033[30m'
-        red = '\033[31m'
-        green = '\033[32m'
-        orange = '\033[33m'
-        blue = '\033[34m'
-        purple = '\033[35m'
-        cyan = '\033[36m'
-        lightgrey = '\033[37m'
-        darkgrey = '\033[90m'
-        lightred = '\033[91m'
-        lightgreen = '\033[92m'
-        yellow = '\033[93m'
-        lightblue = '\033[94m'
-        pink = '\033[95m'
-        lightcyan = '\033[96m'
+    class text_color:
+        BLACK       = "\033[30m"
+        RED         = "\033[31m"
+        GREEN       = "\033[32m"
+        YELLOW      = "\033[33m"
+        BLUE        = "\033[34m"
+        MAGENTA     = "\033[35m"
+        CYAN        = "\033[36m"
+        WHITE       = "\033[37m"
 
-    class bg:
-        black = '\033[40m'
-        red = '\033[41m'
-        green = '\033[42m'
-        orange = '\033[43m'
-        blue = '\033[44m'
-        purple = '\033[45m'
-        cyan = '\033[46m'
-        lightgrey = '\033[47m'
+        GRAY_D      = "\033[90m"
+        RED_L       = "\033[91m"
+        GREEN_L     = "\033[92m"
+        YELLOW_L    = "\033[93m"
+        BLUE_L      = "\033[94m"
+        PINK        = "\033[95m"
+        CYAN_L      = "\033[96m"
+
+        RESET       = "\033[39m"
+
+    class bg_color:
+        BLACK       = "\033[40m"
+        RED         = "\033[41m"
+        GREEN       = "\033[42m"
+        YELLOW      = "\033[43m"
+        BLUE        = "\033[44m"
+        MAGENTA     = "\033[45m"
+        CYAN        = "\033[46m"
+        WHITE       = "\033[47m"
+        RESET       = "\033[49m"
+
+    class intensity:
+        BRIGHT      = "\033[1m"
+        DIM         = "\033[2m"
+        NORMAL      = "\033[22m"
+    
+    class style:
+        BOLD        = "\033[01m"
+        DISABLE     = "\033[02m"
+        UNDERLINE   = "\033[04m"
+        REVERSE     = "\033[07m"
+        STRIKE      = "\033[09m"
+        INVISIBLE   = "\033[08m"
+    
+    RESET_ALL = "\033[0m"

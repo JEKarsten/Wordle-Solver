@@ -152,15 +152,15 @@ def format_guess(guess: str, score: str) -> str:
         Returns:
             output: the guess after being color formatted
     """
-    output = ""
+    output = command_line_formats.intensity.BRIGHT
     for i in range(WORD_LENGTH):
         if score[i] == "g":
-            output += command_line_formats.text.green + guess[i]
+            output += command_line_formats.text_color.GREEN + guess[i]
         elif score[i] == "y":
-            output += command_line_formats.text.yellow + guess[i]
+            output += command_line_formats.text_color.YELLOW + guess[i]
         else:
-            output += command_line_formats.text.black + guess[i]
-    output += command_line_formats.reset
+            output += command_line_formats.text_color.BLACK + guess[i]
+    output += command_line_formats.RESET_ALL
     return output
 
 
@@ -198,19 +198,20 @@ def main():
     must_have = {letter: [False, [True for _ in range(WORD_LENGTH)]] for letter in string.ascii_lowercase}
     guesses = ["" for _ in range(NUM_ALLOWED_GUESSES)]
 
-    # get all possible 5-letter words
+    # gets all possible 5-letter words
     possible_words = set()
     with open(FIVE_WORD_DICT, "r") as f:
         all_words = f.read().split()
         for w in all_words:
             possible_words.add(w)
 
-    print("\n"*50)
+    # clears terminal
+    print("\n" * os.get_terminal_size().lines)
 
     num_guesses = 0
     won = False
     while (num_guesses < NUM_ALLOWED_GUESSES):
-        print(command_line_formats.bold + f"ROUND {num_guesses+1}" + command_line_formats.reset)
+        print(command_line_formats.style.BOLD + f"ROUND {num_guesses+1}" + command_line_formats.RESET_ALL)
         guess, score = get_guess()
         alphabet, must_have = modify_alphabet(alphabet, must_have, guess, score)
         possible_words = update_possible_words(possible_words, alphabet, must_have)
