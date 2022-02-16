@@ -1,4 +1,5 @@
 import string
+import os
 from formatting import command_line_formats
 
 WORD_LENGTH = 5
@@ -75,18 +76,25 @@ def modify_alphabet(alphabet: list[str], must_have: dict[str, list[bool, list[bo
     """
     for i in range(WORD_LENGTH):
         letter = guess[i]
-        if score[i] == "g":  # green
+
+        # green: sets alphabet for the position to only be that single letter
+        if score[i] == "g":
             alphabet[i] = guess[i]
 
-        elif score[i] == "y":  # yellow
+        # yellow: 1) gets rid of the letter from the alphabet for the current position
+        #         2) adds that letter to the must_haves, noting that it cannot appear in the current position
+        elif score[i] == "y":
             alphabet[i] = alphabet[i].replace(letter, "", 1)
             if not must_have[letter][0]:
                 must_have[letter][0] = True
             must_have[letter][1][i] = False
 
-        else:  # black
+        # black: gets rid of the letter from the alphabet for all positions execpt ones previously marked as green
+        else:
             for j in range(WORD_LENGTH):
-                alphabet[j] = alphabet[j].replace(letter, "", 1)
+                if len(alphabet[j]) > 1:
+                    alphabet[j] = alphabet[j].replace(letter, "", 1)
+
     return alphabet, must_have
 
 
@@ -102,13 +110,20 @@ def update_possible_words(possible_words: set[str], alphabet: list[str], must_ha
             possible_words: a set of all possible words after eliminating words
     """
     new_possible_words = set()
+
     for word in possible_words:
         valid = True
+
+        # checks if each letter is in the set of possible characters for each position
         for i in range(WORD_LENGTH):
             letter = word[i]
             if letter not in alphabet[i]:
                 valid = False
                 break
+        if not valid:
+            continue
+
+        # for all letters in yellow, it checks that the letter appears at least once elsewhere in the word
         for letter in string.ascii_lowercase:
             if must_have[letter][0]:
                 has_letter = False
@@ -119,8 +134,11 @@ def update_possible_words(possible_words: set[str], alphabet: list[str], must_ha
                 if not has_letter:
                     valid = False
                     break
+        
+        # adds word to the set of valid words if it passes the above tests
         if valid:
             new_possible_words.add(word)
+    
     return new_possible_words
 
 
@@ -147,15 +165,17 @@ def format_guess(guess: str, score: str) -> str:
 
 
 def print_round(guesses: list[str], possible_words: set[str], won: bool) -> None:
-    """ formats a single word guess with colors to print to the command line
+    """ pretty prints the list of guesses and possible words
 
         Arguments:
             guesses: a list of all guesses so far
             possible_words: a set of all possible words after the most recent guess
             won: a boolean indicating whether the most recent guess was the correct word
     """
+    terminal_width = os.get_terminal_size().columns
+    words_per_line = terminal_width // (WORD_LENGTH + 2)
     num_dashes = 20
-    words_per_line = 15
+
     print("\n")
     print("-"*num_dashes + "\n" + "Guesses" + "\n" + "-"*num_dashes)
     for i in range(NUM_ALLOWED_GUESSES):
