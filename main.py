@@ -28,11 +28,12 @@ def load_words() -> set[str]:
 
 
 def get_guess() -> tuple[str, str]:
-    """ gets and validates a user's guess word and its score from the command line
+    """ gets and validates a user's guess and its score from the command line
 
         Returns:
             guess: the most recent word guessed
-            score: the score of guess, represented by the characters 'g' (green), 'y' (yellow), and 'b' (black)
+            score: the score of guess, represented by the characters
+                   'g' (green), 'y' (yellow), and 'b' (black)
     """
     # word
     valid_input = False
@@ -43,14 +44,17 @@ def get_guess() -> tuple[str, str]:
 
         # checks the length of the word
         if len(guess) != WORD_LENGTH:
-            print(f"Oops! This word is not 5 letters long -- please try again!")
+            print(
+                f"Oops! This word is not 5 letters long -- please try again!")
             continue
 
         # checks that every letter is in the alphabet
         i = 0
         for c in guess:
             if c not in string.ascii_lowercase:
-                print(f"Oops! A character entered ({c}) is not in the alphabet -- please try again!")
+                print(
+                    f"Oops! A character entered ({c}) is not in the alphabet" +
+                    " -- please try again!")
                 break
             i += 1
             if i == WORD_LENGTH:
@@ -65,14 +69,17 @@ def get_guess() -> tuple[str, str]:
 
         # checks the length of the score
         if len(score) != WORD_LENGTH:
-            print("Oops! This score is not 5 letters long -- please try again!")
+            print(
+                f"Oops! This score is not 5 letters long -- please try again!")
             continue
 
         # checks that every letter is in the alphabet
         i = 0
         for c in score:
             if c not in "byg":
-                print(f"Oops! A character entered ({c}) is not g, y, or b -- please try again!")
+                print(
+                    f"Oops! A character entered ({c}) is not g, y, or b" +
+                    " -- please try again!")
                 break
             i += 1
             if i == WORD_LENGTH:
@@ -95,10 +102,12 @@ def modify_alphabet(
     """ modifies the available alphabet for each position given new constraints
 
         Arguments:
-            alphabet: a list of strings, with each string representing the available characters for a position in the word
+            alphabet: a list of strings, with each string representing the
+                      available characters for a position in the word
             must_have: a dictionary with a key for each letter... TODO
             guess: the most recent word guessed
-            score: the score of guess, represented by the characters 'g' (green), 'y' (yellow), and 'b' (black)
+            score: the score of guess, represented by the characters
+                   'g' (green), 'y' (yellow), and 'b' (black)
 
         Returns:
             alphabet: the updated input alphabet after eliminating characters
@@ -111,28 +120,32 @@ def modify_alphabet(
         if score[i] == "g":
             alphabet[i] = guess[i]
 
-        # yellow: 1) gets rid of letter from the alphabet for the current position
-        #         2) adds letter to the must_haves, noting that it cannot appear in the current position
+        # yellow: 1) gets rid of letter from the current position's alphabet
+        #         2) adds letter to the must_haves,
+        #            noting that it cannot appear in the current position
         elif score[i] == "y":
             alphabet[i] = alphabet[i].replace(letter, "", 1)
             if not must_have[letter][0]:
                 must_have[letter][0] = True
             must_have[letter][1][i] = False
 
-        # black: gets rid of letter from the alphabet for all positions execpt ones previously marked as green
+        # black: gets rid of letter from the alphabet for all positions
+        #        execpt ones previously marked as green
         else:
             for position in range(WORD_LENGTH):
-                # checks if letter has not already been marked green in the current position
+                # checks if letter hasn't been marked green in current position
                 if len(alphabet[position]) > 1:
-                    # checks if letter has been marked green or yellow in the same guess
+                    # checks if letter has been marked green/yellow in guess
                     num_occurrences = 0
                     for j in range(WORD_LENGTH):
                         if guess[j] == letter and score[j] in "gy":
                             num_occurrences += 1
-                    # updates max_occurrences for letter to be the number of times it is green or yellow
+                    # updates max_occurrences for letter to be the number of
+                    # times it is green or yellow
                     max_occurrences[letter] = num_occurrences
                     if not num_occurrences:
-                        alphabet[position] = alphabet[position].replace(letter, "", 1)
+                        alphabet[position] = \
+                            alphabet[position].replace(letter, "", 1)
 
     return alphabet, must_have, max_occurrences
 
@@ -143,11 +156,12 @@ def update_possible_words(
         must_have: dict[str, list[bool, list[bool]]],
         max_occurrences: dict[str, int]
         ) -> set[str]:
-    """ updates the possible words by removing words that no longer fit the constraints
+    """ updates possible_words by removing words that don't fit the constraints
 
         Arguments:
-            possible_words: a set of all possible words before the most recent guess
-            alphabet: a list of strings, with each string representing the available characters for a position in the word
+            possible_words: a set of possible words after the most recent guess
+            alphabet: a list of strings, with each string representing the
+                      available characters for a position in the word
             must_have: TODO
 
         Returns:
@@ -158,7 +172,7 @@ def update_possible_words(
     for word in possible_words:
         valid = True
 
-        # checks if each letter is in the set of possible characters for each position
+        # checks if each letter is in the alphabet for each position
         for i in range(WORD_LENGTH):
             letter = word[i]
             if letter not in alphabet[i]:
@@ -167,7 +181,7 @@ def update_possible_words(
         if not valid:
             continue
 
-        # for all letters in yellow, it checks that the letter appears at least once elsewhere in the word
+        # checks that all yellow letters appear at least once in the word
         for letter in string.ascii_lowercase:
             if must_have[letter][0]:
                 has_letter = False
@@ -181,7 +195,7 @@ def update_possible_words(
         if not valid:
             continue
 
-        # removes words in which a letter appears more time than its maximum allowance
+        # removes words in which a letter appears more time than max allowance
         for letter in string.ascii_lowercase:
             letter_count = word.count(letter)
             if letter_count > max_occurrences[letter]:
@@ -200,7 +214,8 @@ def format_guess(guess: str, score: str) -> str:
 
         Arguments:
             guess: the most recent word guessed
-            score: the score of guess, represented by the characters 'g' (green), 'y' (yellow), and 'b' (black)
+            score: the score of guess, represented by the characters
+                   'g' (green), 'y' (yellow), and 'b' (black)
 
         Returns:
             output: the guess after being color formatted
@@ -217,13 +232,17 @@ def format_guess(guess: str, score: str) -> str:
     return output
 
 
-def print_round(guesses: list[str], possible_words: set[str], won: bool) -> None:
+def print_round(
+        guesses: list[str],
+        possible_words: set[str],
+        won: bool) -> None:
     """ pretty prints the list of guesses and possible words
 
         Arguments:
             guesses: a list of all guesses so far
-            possible_words: a set of all possible words after the most recent guess
-            won: a boolean indicating whether the most recent guess was the correct word
+            possible_words: a set of possible words after the most recent guess
+            won: a boolean indicating whether the most recent guess was the
+                 correct word
     """
     terminal_width = os.get_terminal_size().columns
     words_per_line = terminal_width // (WORD_LENGTH + 2)
@@ -249,9 +268,11 @@ def main():
     """
     # variables that keep track of allowed letters
     alphabet = [string.ascii_lowercase for _ in range(WORD_LENGTH)]
-    must_have = {letter: [False, [True for _ in range(WORD_LENGTH)]]
+    must_have = {
+        letter: [False, [True for _ in range(WORD_LENGTH)]]
         for letter in string.ascii_lowercase}
-    max_occurrences = {letter: WORD_LENGTH for letter in string.ascii_lowercase}
+    max_occurrences = {
+        letter: WORD_LENGTH for letter in string.ascii_lowercase}
 
     # gets all possible 5-letter words
     possible_words = load_words()
@@ -267,19 +288,21 @@ def main():
     try:
         while (num_guesses < NUM_ALLOWED_GUESSES):
             # prints round number
-            print(command_line_formats.style.BOLD + \
-                f"ROUND {num_guesses+1}" + \
+            print(
+                command_line_formats.style.BOLD +
+                f"ROUND {num_guesses+1}" +
                 command_line_formats.RESET_ALL)
-            
+
             # get user input and checks for win
             guess, score = get_guess()
             if score == "ggggg":
                 won = True
-            
+
             # update alphabet and possible words
             alphabet, must_have, max_occurrences = modify_alphabet(
                 alphabet, must_have, max_occurrences, guess, score)
-            possible_words = update_possible_words(possible_words, alphabet, must_have, max_occurrences)
+            possible_words = update_possible_words(
+                possible_words, alphabet, must_have, max_occurrences)
 
             # pretty prints guess and new possible words
             guesses[num_guesses] = format_guess(guess, score)
@@ -289,7 +312,7 @@ def main():
             num_guesses += 1
             if won:
                 break
-    
+
     except KeyboardInterrupt:
         print("\n\nThank you for playing!\n")
         sys.exit(0)

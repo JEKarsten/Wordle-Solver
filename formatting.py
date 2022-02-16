@@ -35,7 +35,7 @@ class command_line_formats:
         BRIGHT      = "\033[1m"
         DIM         = "\033[2m"
         NORMAL      = "\033[22m"
-    
+
     class style:
         BOLD        = "\033[01m"
         DISABLE     = "\033[02m"
@@ -43,5 +43,5 @@ class command_line_formats:
         REVERSE     = "\033[07m"
         STRIKE      = "\033[09m"
         INVISIBLE   = "\033[08m"
-    
+
     RESET_ALL = "\033[0m"
