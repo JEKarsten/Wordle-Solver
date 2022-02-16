@@ -1,5 +1,6 @@
 import string
 import os
+import sys
 from formatting import command_line_formats
 
 WORD_LENGTH = 5
@@ -134,11 +135,11 @@ def update_possible_words(possible_words: set[str], alphabet: list[str], must_ha
                 if not has_letter:
                     valid = False
                     break
-        
+
         # adds word to the set of valid words if it passes the above tests
         if valid:
             new_possible_words.add(word)
-    
+
     return new_possible_words
 
 
@@ -210,18 +211,23 @@ def main():
 
     num_guesses = 0
     won = False
-    while (num_guesses < NUM_ALLOWED_GUESSES):
-        print(command_line_formats.style.BOLD + f"ROUND {num_guesses+1}" + command_line_formats.RESET_ALL)
-        guess, score = get_guess()
-        alphabet, must_have = modify_alphabet(alphabet, must_have, guess, score)
-        possible_words = update_possible_words(possible_words, alphabet, must_have)
-        guesses[num_guesses] = format_guess(guess, score)
-        if score == "ggggg":
-            won = True
-        print_round(guesses, possible_words, won)
-        num_guesses += 1
-        if won:
-            break
+    try:
+        while (num_guesses < NUM_ALLOWED_GUESSES):
+            print(command_line_formats.style.BOLD + f"ROUND {num_guesses+1}" + command_line_formats.RESET_ALL)
+            guess, score = get_guess()
+            alphabet, must_have = modify_alphabet(alphabet, must_have, guess, score)
+            possible_words = update_possible_words(possible_words, alphabet, must_have)
+            guesses[num_guesses] = format_guess(guess, score)
+            if score == "ggggg":
+                won = True
+            print_round(guesses, possible_words, won)
+            num_guesses += 1
+            if won:
+                break
+    except KeyboardInterrupt:
+        print("\n\nThank you for playing!\n")
+        sys.exit(0)
+
 
 if __name__ == "__main__":
     main()
